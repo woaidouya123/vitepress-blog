@@ -1,0 +1,22 @@
+{
+  "name": "vuepress-blog",
+  "version": "1.0.0",
+  "description": "this is a blog.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:serve": "vitepress serve docs"
+  },
+  "keywords": [
+    "vitepress",
+    "vue",
+    "blog"
+  ],
+  "author": "Alber Cai",
+  "license": "ISC",
+  "devDependencies": {
+    "vitepress": "^1.0.0-alpha.9",
+    "vue": "^3.2.37"
+  }
+}

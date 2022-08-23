@@ -1,6 +1,6 @@
 <template>
   <div class="home-page">
-    <MlHeatmap id="heat-map" :data="calendarData" :year="2022" title="leetcode打卡记录" locale="en" />
+    <MlHeatmap id="heat-map" :data="calendarData" :year="2022" title="leetcode打卡记录" locale="cn" />
   </div>
 </template>
 <script setup>

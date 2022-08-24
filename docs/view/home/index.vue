@@ -1,11 +1,14 @@
 <template>
   <div class="home-page">
-    <MlHeatmap id="heat-map" :data="calendarData" :year="2022" title="leetcode打卡记录" locale="cn" />
+    <MlHeatmap id="heat-map" :data="calendarData" :year="2022" locale="cn" />
+    <canvas class="live2d" id="live2d" width="300" height="300"></canvas>
   </div>
 </template>
 <script setup>
+import { onMounted } from 'vue'
 import lcData from '../../data/lcData.json'
 import 'ml-heatmap/dist/style.css'
+import '../../utils/live2d'
 import moment from 'moment'
 import { MlHeatmap } from 'ml-heatmap'
 const submissionCalendar = JSON.parse(lcData.userCalendar.submissionCalendar)
@@ -16,6 +19,15 @@ let calendarData = Object.keys(submissionCalendar).map((key) => {
     count: submissionCalendar[key],
   }
 })
+onMounted(() => {
+  loadlive2d("live2d", "/tororo/tororo.model.json")
+})
+
 </script>
 <style scoped>
+.live2d {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
 </style>

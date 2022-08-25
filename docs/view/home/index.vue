@@ -8,7 +8,6 @@
 import { onMounted } from 'vue'
 import lcData from '../../data/lcData.json'
 import 'ml-heatmap/dist/style.css'
-import '../../utils/live2d'
 import moment from 'moment'
 import { MlHeatmap } from 'ml-heatmap'
 const submissionCalendar = JSON.parse(lcData.userCalendar.submissionCalendar)
@@ -20,7 +19,10 @@ let calendarData = Object.keys(submissionCalendar).map((key) => {
   }
 })
 onMounted(() => {
-  loadlive2d("live2d", "/tororo/tororo.model.json")
+  setTimeout(() => {
+    loadlive2d("live2d", "/blog/tororo/tororo.model.json")
+  }, 1000)
+
 })
 
 </script>

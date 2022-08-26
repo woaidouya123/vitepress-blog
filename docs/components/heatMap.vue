@@ -26,6 +26,7 @@ type Props = {
   tip1?: string,
   tip2?: string,
   showAxis?: boolean,
+  year?: number
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -37,8 +38,12 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const WeekDays = ["Sun", "Wed", "Sat"];
-const curDate = new Date();
-let startDate = moment(curDate).subtract(364, 'day');
+let curDate = moment();
+let startDate = moment(curDate).subtract(365, 'day');
+if(props.year != null){
+  curDate = moment(props.year + '-12-31');
+  startDate = moment(props.year + '-01-01');
+}
 let monthsMap: Map<string, Array<string>> = new Map();
 const dataMap: object = props.data.reduce((pre, cur) => { pre[cur.date] = cur.count; return pre;}, {})
 while(startDate.valueOf() <= curDate.valueOf()) {

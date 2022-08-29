@@ -86,6 +86,7 @@ const calcColor = (count) => {
   left: 0;
   bottom: -20px;
   text-align: center;
+  white-space: nowrap;
 }
 .calander-container .month .day-container{
   display: inline-flex;

@@ -32,4 +32,8 @@ onMounted(() => {
   bottom: 0;
   right: 0;
 }
+.home-page{
+  display: flex;
+  justify-content: center;
+}
 </style>

@@ -1,19 +1,16 @@
 ---
-# layout: home
+layout: home
 
-# features:
-#   - icon: ⚡️
-#     title: leetcode
-#     details: Lorem ipsum...
-#     link: /articles/leetcode/index
-#   - icon: 🖖
-#     title: 前端笔记
-#     details: Lorem ipsum...
-#     link: /articles/leetcode/index
-#   - icon: 🛠️
-#     title: 杂七杂八
-#     details: Lorem ipsum...
-#     link: /articles/leetcode/index
+hero:
+  name: Welcome
+  text: 道阻且长，行则将至。
+  actions:
+    - theme: brand
+      text: LeetCode
+      link: https://leetcode.cn/u/woaidouya123
+    - theme: alt
+      text: GitHub
+      link: https://github.com/woaidouya123
 ---
 
 <script setup>
@@ -22,8 +19,8 @@ import home from './view/home/index.vue'
 
 <home />
 
-[leetcode](./articles/leetcode/index.md)
+<!-- [leetcode](./articles/leetcode/index.md)
 
 [前端笔记](./articles/frontend/index.md)
 
-[杂七杂八](./articles/others/index.md)
+[杂七杂八](./articles/others/index.md) -->

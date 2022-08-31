@@ -3,11 +3,11 @@
     <ClientOnly>
       <HeatMap :data="calendarData" :show-axis="true"></HeatMap>
     </ClientOnly>
-    <canvas class="live2d" id="live2d" width="300" height="300"></canvas>
+
   </div>
 </template>
 <script setup>
-import { onMounted } from 'vue'
+
 import lcData from '../../data/lcData.json'
 import moment from 'moment'
 import HeatMap from '../../components/heatMap.vue'
@@ -19,19 +19,10 @@ let calendarData = Object.keys(submissionCalendar).map((key) => {
     count: submissionCalendar[key],
   }
 })
-onMounted(() => {
-  import('../../utils/live2d').then(() => {
-    loadlive2d("live2d", "/blog/tororo/tororo.model.json")
-  })
-})
+
 
 </script>
 <style scoped>
-.live2d {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-}
 .home-page{
   display: flex;
   justify-content: center;

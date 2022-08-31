@@ -2,3 +2,4 @@ node_modules
 package-lock.*
 docs/.vitepress/dist
 **/.DS_Store
+**/.temp/*

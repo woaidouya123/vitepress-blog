@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "vitepress dev docs --host",
-    "build": "node ./docs/script/leetcode.mjs && vitepress build docs",
+    "build": "vitepress build docs",
     "serve": "vitepress serve docs",
-    "notify": "node ./docs/script/leetcode.mjs && node ./docs/script/dailyquestion.mjs"
+    "notify": "node ./docs/script/leetcode.mjs"
   },
   "keywords": [
     "vitepress",

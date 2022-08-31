@@ -259,7 +259,7 @@ const generateMDFile = (data) => {
 const recentSolutins = await getRecentSolution();
 
 const processQuestionText = (text) => {
-    text = text.replace(/<([ =]+)/g, '&lt;$1');
+    text = text.replace(/<([ =]+)/g, '&lt;$1').replace(/\t/g, '  ');
     return text;
 }
 

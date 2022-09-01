@@ -6,6 +6,11 @@ const url = 'https://leetcode.cn/graphql/';
 const submitQueryUrl = 'https://leetcode.cn/graphql/noj-go/';
 const userName = 'woaidouya123';
 
+const params = process.argv;
+
+// 图片代理(需要代理服务器进行相应配置)
+const proxy = (params.find(v => v.startsWith('--proxy=')) || "--proxy=").slice(8);
+
 // 获取近一年提交
 const queryYearSubmit = (userSlug) => ({
     query: `query userProfileCalendar($userSlug: String!, $year: Int) {
@@ -303,6 +308,8 @@ const recentSolutins = await getRecentSolution();
 const processQuestionText = (text) => {
     // 格式处理
     text = text.replace(/<([ =]+)/g, '&lt;$1').replace(/\t/g, '  ').replace(/<(\/)?font.*?>/g, '');
+    // 图片代理
+    proxy && (text = text.replace(/(src=")(http(s)?:\/\/.*?\.(png|gif|jpeg))/g, `$1${proxy}?url=$2`));
     return text;
 }
 

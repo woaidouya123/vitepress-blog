@@ -17,6 +17,17 @@ const articleUrls = await axios.get(url).then(res => {
     return urls;
 })
 
+const charTrans = {
+    '&nbsp;': ' ',
+    '&lt;': '<',
+    '&gt;': '>',
+    '&amp;': '&',
+    '&quot;': '"',
+    '&apos;': "'",
+    '&times;': '×',
+    '&divide;': '÷'
+}
+
 const processText = (text) => {
     // 格式处理
     text = text.replace(/\n+[\s\t]*\n+/g, '\n');
@@ -26,7 +37,11 @@ const processText = (text) => {
     // html转义处理
     const codeBlocks = text.match(/```(.|\n)*?```/g);
     codeBlocks && codeBlocks.forEach(code => {
-        text = text.replace(code, code.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&nbsp;/g, ' '))
+        let s = code;
+        Object.entries(charTrans).forEach(([key, value]) => {
+            s = s.replace(new RegExp(key, 'g'), value);
+        })
+        text = text.replace(code, s);
     })
     return text;
 }

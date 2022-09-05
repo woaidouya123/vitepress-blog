@@ -7,7 +7,7 @@
     "dev": "vitepress dev docs --host",
     "build": "vitepress build docs",
     "serve": "vitepress serve docs",
-    "notify": "node ./docs/script/leetcode.mjs",
+    "notify": "node ./docs/script/leetcode.mjs && node ./docs/script/csdn.mjs",
     "pic_server": "node ./docs/script/pic_server.js"
   },
   "keywords": [
@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "axios": "^0.27.2",
+    "cheerio": "^1.0.0-rc.12",
     "element-plus": "^2.2.15",
     "express": "^4.18.1",
     "moment": "^2.29.4"

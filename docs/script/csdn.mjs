@@ -19,7 +19,15 @@ const articleUrls = await axios.get(url).then(res => {
 
 const processText = (text) => {
     // 格式处理
-    text = text.replace(/\n+/g, '\n').replace(/\t/g, '  ');
+    text = text.replace(/\n+[\s\t]*\n+/g, '\n');
+    // 代码处理
+    text = text.replace(/<pre.*?><code class="language-(.+)">((.|\n)*?)<\/code><\/pre>/g, '\n```$1\n$2\n```');
+    text = text.replace(/<pre.*?><code.*?>((.|\n)*?)<\/code><\/pre>/g, '\n```\n$1\n```');
+    // html转义处理
+    const codeBlocks = text.match(/```(.|\n)*?```/g);
+    codeBlocks && codeBlocks.forEach(code => {
+        text = text.replace(code, code.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&nbsp;/g, ' '))
+    })
     return text;
 }
 
@@ -31,7 +39,7 @@ ${content}
 await Promise.all(articleUrls.map(artUrl => {
     return axios.get(artUrl).then(res => {
         const $ = load(res.data);
-        const title = $("#articleContentId").html().replace(/\s/g, '')
+        const title = $("#articleContentId").html().replace(/\s/g, '').replace(/[+]/g, '')
         const content = processText($("#content_views").html().trim())
         const __dirname = path.resolve()
         const filePath = path.resolve(
@@ -73,4 +81,3 @@ const generateIndexFile = () => {
 }
 
 generateIndexFile()
-

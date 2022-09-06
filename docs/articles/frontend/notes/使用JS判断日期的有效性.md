@@ -10,10 +10,10 @@ function judgeDate(date){
 	var year = parseInt(date.substr(0,4)),
 		mon = parseInt(date.substr(5,7)),
 		day = parseInt(date.substr(8,10));
-	if(year % 4 == 0 &amp;&amp; year % 100 != 0 || year % 400 == 0){
-		return mon > 0 &amp;&amp; mon <=12 &amp;&amp; day > 0 &amp;&amp; day <= rmons[mon-1];
+	if(year % 4 == 0 && year % 100 != 0 || year % 400 == 0){
+		return mon > 0 && mon <=12 && day > 0 && day <= rmons[mon-1];
 	}else{
-		return mon > 0 &amp;&amp; mon <=12 &amp;&amp; day > 0 &amp;&amp; day <= pmons[mon-1];
+		return mon > 0 && mon <=12 && day > 0 && day <= pmons[mon-1];
 	}
 }
 ``` 
@@ -27,8 +27,8 @@ function judgeDate(date){
 		return false;
 	}
 	var year = pDate.getFullYear(),
-		mon = /(\d+)/.test(pDate.getMonth()+1+"")&amp;&amp;RegExp.$1.length <= 1?"0"+RegExp.$1:RegExp.$1,
-		day = /(\d+)/.test(pDate.getDate()+"")&amp;&amp;RegExp.$1.length <= 1?"0"+RegExp.$1:RegExp.$1;
+		mon = /(\d+)/.test(pDate.getMonth()+1+"")&&RegExp.$1.length <= 1?"0"+RegExp.$1:RegExp.$1,
+		day = /(\d+)/.test(pDate.getDate()+"")&&RegExp.$1.length <= 1?"0"+RegExp.$1:RegExp.$1;
 	return date == year + "/" + mon + "/" + day;
 }
 ``` 

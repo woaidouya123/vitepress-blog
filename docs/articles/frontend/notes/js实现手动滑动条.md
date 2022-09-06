@@ -76,8 +76,8 @@ var startX = 0; //鼠标点击的偏移量，实现平滑移动的保证
     touch_bar.onmousemove = function(ev) {
         var ev = ev || event;
         // console.log(ev.clientX);
-        if (ev.clientX - startX > 0 &amp;&amp;
-            ev.clientX - startX < bg_bar.offsetWidth - touch_bar.offsetWidth &amp;&amp;
+        if (ev.clientX - startX > 0 &&
+            ev.clientX - startX < bg_bar.offsetWidth - touch_bar.offsetWidth &&
             isTouch) {
             touch_bar.style.left = ev.clientX - startX + "px";
             bg_new.style.width = ev.clientX - startX + touch_bar.offsetWidth / 2 + "px";

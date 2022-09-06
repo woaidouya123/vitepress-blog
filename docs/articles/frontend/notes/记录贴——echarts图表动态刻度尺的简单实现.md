@@ -16,7 +16,7 @@
 export function calcUnit(value){
   // 初始单位bps
   let unit_arry = ['bps', 'kbps', 'Mbps', 'Gbps'], unit_index = 0, res = +value;
-  while(res >= 1024&amp;&amp;unit_index<3){
+  while(res >= 1024&&unit_index<3){
     res = res/1024;
     unit_index++;
   }
@@ -45,7 +45,7 @@ export function calcUnit(value){
 function getMaxLine(num){
     let pow = 0;
     // 现将数据处理至能达到的最大单位（Gbps为上限）
-    while(num >= 1024 &amp;&amp; pow < 3){
+    while(num >= 1024 && pow < 3){
         num = num/1024;
         pow++;
     }

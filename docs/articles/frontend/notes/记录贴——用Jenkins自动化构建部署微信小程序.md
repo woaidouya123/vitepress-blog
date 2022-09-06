@@ -42,7 +42,7 @@ const ci = require('miniprogram-ci')
     qrcodeOutputDest: 'ci/destination.jpg',
     onProgressUpdate: console.log,
     // pagePath: 'pages/index/index', // 预览页面
-    // searchQuery: 'a=1&amp;b=2',  // 预览参数 [注意!]这里的`&amp;`字符在命令行中应写成转义字符`\&amp;`
+    // searchQuery: 'a=1&b=2',  // 预览参数 [注意!]这里的`&`字符在命令行中应写成转义字符`\&`
   })
   console.log(previewResult)
 })()

@@ -73,7 +73,7 @@ function init_dom(date) {
             col.push((s_num - 1 + j + timeArray[i]) % (timeArray[i] + 1) % 10);
         }
         // 对小时进行特殊处理
-        if (i === 4 &amp;&amp; parseInt(s[0]) >= 2) {
+        if (i === 4 && parseInt(s[0]) >= 2) {
             col = col.slice(10).concat(col.slice(0, 10));
         }
         if (i === 5) {
@@ -125,7 +125,7 @@ function tickSec(index) {
     var scrollDiv = document.getElementById("scroll" + (index + 1));
     var dom = scrollDiv.children[0].children[0];
     dom.style.animation = "close 0.5s linear";
-    if (index < timeArray.length - 1 &amp;&amp; scrollDiv.children[0].children[3].innerHTML == "0") {
+    if (index < timeArray.length - 1 && scrollDiv.children[0].children[3].innerHTML == "0") {
         tickSec(index + 1);
     }
     dom.addEventListener("animationend", function(event) {

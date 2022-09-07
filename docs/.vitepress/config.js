@@ -14,6 +14,7 @@ module.exports = {
                     { text: 'FreshRSS', link: 'https://487lq34228.oicp.vip/' },
                     { text: 'Jupyter', link: 'https://487lq34228.oicp.vip/jupyter' },
                     { text: 'Jenkins', link: 'https://487lq34228.oicp.vip/jenkins/' },
+                    { text: 'Pi-Dashboard', link: 'https://487lq34228.oicp.vip/pi-dashboard/' },
                 ]
             }
         ]

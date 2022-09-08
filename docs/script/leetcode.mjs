@@ -1,6 +1,7 @@
 import axios from 'axios';
 import * as fs from 'fs';
 import * as path from 'path';
+import moment from 'moment';
 
 const url = 'https://leetcode.cn/graphql/';
 const submitQueryUrl = 'https://leetcode.cn/graphql/noj-go/';
@@ -313,9 +314,9 @@ const processQuestionText = (text) => {
     return text;
 }
 
-const parseTemplate = ({title, link, question, solution}) =>
+const parseTemplate = ({title, link, question, solution, time}) =>
 `# [${title}](${link})
-
+*${time}*
 ## 题目
 ${processQuestionText(question)}
 
@@ -323,41 +324,45 @@ ${processQuestionText(question)}
 ${solution}
 `
 
+let articleDir = [];
+
 for(let i=0; i<recentSolutins.length; i++){
     const question = await getQuestion(recentSolutins[i].node.question.titleSlug);
     const solution = await getSolution(recentSolutins[i].node.slug);
+    let title = `${question.questionFrontendId}.${question.translatedTitle}`.replace(/\s/g, '');
+    let time = moment(solution.createdAt).format("YYYY-MM-DD HH:mm:ss");
     generateMDFile({
-        title: `${question.questionFrontendId}.${question.translatedTitle}`.replace(/\s/g, ''),
+        title,
         link: `https://leetcode.cn/problems/${question.titleSlug}`,
         question: question.translatedContent,
-        solution: solution.content
+        solution: solution.content,
+        time
+    })
+    articleDir.push({
+        title,
+        link: `./notes/${title}`,
+        time
     })
 }
 
-const indexFileTemplate = (articles) => `# 算法笔记
-${articles.map(v => '[' + v.title + '](' + v.link + ')').join('\n\r')}
-`
-// 写入索引文件
-const generateIndexFile = () => {
+articleDir.sort((a, b) => moment(b.time).valueOf() - moment(a.time).valueOf());
+
+// 写入目录数据存储文件
+const generateLcArticleJson = (content) => {
     const __dirname = path.resolve();
-    const dirPath = path.resolve(__dirname, `docs/articles/leetcode/notes/`);
-    const articles = fs.readdirSync(dirPath).map(v => ({
-        title: v.slice(0, -3),
-        link: `./notes/${v}`
-    }));;
     const filePath = path.resolve(
         __dirname,
-        `docs/articles/leetcode/index.md`
+        `docs/data/lcArticles.json`
     );
     fs.writeFileSync(
         filePath,
-        indexFileTemplate(articles),
+        content,
         {
             encoding: 'utf8',
         }
     );
 }
 
-generateIndexFile();
+generateLcArticleJson(JSON.stringify(articleDir));
 generageYearSubmitFile();
 

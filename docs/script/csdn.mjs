@@ -2,18 +2,20 @@ import axios from 'axios';
 import * as fs from 'fs';
 import * as path from 'path';
 import { load } from 'cheerio';
+import moment from 'moment';
 
 const csdnUrls = [
     {
         name: '前端笔记',
         base: 'frontend',
         url: 'https://blog.csdn.net/woaidouya123/category_7913688.html',
-
+        output: 'docs/data/csdnFront.json'
     },
     {
         name: '杂七杂八',
         base: 'others',
-        url: 'https://blog.csdn.net/woaidouya123/category_7550314.html'
+        url: 'https://blog.csdn.net/woaidouya123/category_7550314.html',
+        output: 'docs/data/csdnOthers.json'
     }
 ]
 
@@ -47,36 +49,31 @@ const processText = (text) => {
     return text;
 }
 
-const articleTemplate = ({ title, content, link }) =>
+const articleTemplate = ({ title, content, link, time }) =>
     `# [${title}](${link})
+*${time}*
+
+---
 ${content}
 `
 
-const indexFileTemplate = (title, articles) => `# ${title}
-${articles.map(v => '[' + v.title + '](' + v.link + ')').join('\n\r')}
-`
-// 写入索引文件
-const generateIndexFile = (name, base) => {
+// 写入目录数据存储文件
+const generateDirJson = (file, content) => {
     const __dirname = path.resolve();
-    const dirPath = path.resolve(__dirname, `docs/articles/${base}/notes/`);
-    const articles = fs.readdirSync(dirPath).map(v => ({
-        title: v.slice(0, -3),
-        link: `./notes/${v}`
-    }));;
     const filePath = path.resolve(
         __dirname,
-        `docs/articles/${base}/index.md`
+        file
     );
     fs.writeFileSync(
         filePath,
-        indexFileTemplate(name, articles),
+        content,
         {
             encoding: 'utf8',
         }
     );
 }
 
-const getCSDNArticles = async ({ name, base, url }) => {
+const getCSDNArticles = async ({ name, base, url, output }) => {
     const articleUrls = await axios.get(url).then(res => {
         const $ = load(res.data);
         const articles = $(".column_article_list > li");
@@ -91,11 +88,12 @@ const getCSDNArticles = async ({ name, base, url }) => {
         console.error(err);
     })
 
-    await Promise.all(articleUrls.map(artUrl => {
+    const dirData = await Promise.all(articleUrls.map(artUrl => {
         return axios.get(artUrl).then(res => {
             const $ = load(res.data);
             const title = $("#articleContentId").html().replace(/\s/g, '').replace(/[+]/g, '')
             const content = processText($("#content_views").html().trim())
+            const time = $(".time").html().trim().match(/[0-9\s-:]+/)[0]
             const __dirname = path.resolve()
             const filePath = path.resolve(
                 __dirname,
@@ -103,16 +101,22 @@ const getCSDNArticles = async ({ name, base, url }) => {
             );
             fs.writeFileSync(
                 filePath,
-                articleTemplate({ title, content, link: artUrl }),
+                articleTemplate({ title, content, link: artUrl, time }),
                 {
                     encoding: 'utf8',
                 }
             );
+            return {
+                title,
+                link: `./notes/${title}.md`,
+                time
+            }
         })
     })).catch(err => {
         console.error(err);
     })
-    generateIndexFile(name, base);
+    dirData.sort((a, b) => moment(b.time).valueOf() - moment(a.time).valueOf());
+    generateDirJson(output, JSON.stringify(dirData));
 }
 
 for (let i = 0; i < csdnUrls.length; i++) {

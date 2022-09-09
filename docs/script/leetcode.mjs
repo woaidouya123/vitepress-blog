@@ -314,8 +314,8 @@ const processQuestionText = (text) => {
     return text;
 }
 
-const parseTemplate = ({title, link, question, solution, time}) =>
-`# [${title}](${link})
+const parseTemplate = ({ title, link, question, solution, time }) =>
+    `# [${title}](${link})
 *${time}*
 ## 题目
 ${processQuestionText(question)}
@@ -326,7 +326,7 @@ ${solution}
 
 let articleDir = [];
 
-for(let i=0; i<recentSolutins.length; i++){
+for (let i = 0; i < recentSolutins.length; i++) {
     const question = await getQuestion(recentSolutins[i].node.question.titleSlug);
     const solution = await getSolution(recentSolutins[i].node.slug);
     let title = `${question.questionFrontendId}.${question.translatedTitle}`.replace(/\s/g, '');

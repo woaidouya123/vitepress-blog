@@ -1,4 +1,7 @@
 # [JSCSS实现滚动时间样式](https://blog.csdn.net/woaidouya123/article/details/103706264)
+*2019-12-25 22:08:52*
+
+---
 <p>效果图：</p> 
 <p><img alt="效果图" class="has" height="146" src="https://img-blog.csdnimg.cn/20191225214425130.gif" width="637"></p> 
 <p>动画实现的方案是缩减上方div的高度带动整体上滑，然后用Js操作dom将最上方的div移到最下方。</p> 

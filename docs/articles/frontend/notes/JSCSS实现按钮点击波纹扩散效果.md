@@ -1,4 +1,7 @@
 # [JSCSS实现按钮点击波纹扩散效果](https://blog.csdn.net/woaidouya123/article/details/103467158)
+*2019-12-09 23:05:03*
+
+---
 <p>实现点击时按钮背景为动态扩散的波纹效果。</p> 
 <p>效果图如下：</p> 
 <p><img alt="效果图" class="has" height="227" src="https://img-blog.csdnimg.cn/2019121010020312.gif" width="406"></p> 

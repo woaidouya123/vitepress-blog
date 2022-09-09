@@ -1,4 +1,7 @@
 # [兼容IE8的多文件上传实现](https://blog.csdn.net/woaidouya123/article/details/103501295)
+*2019-12-11 23:40:11*
+
+---
 <p>兼容IE8的注意点：</p> 
 <ol><li>原生多文件属性multiple只在IE10/11上有效，IE8不兼容无法使用</li><li>formdata对象同样只支持在IE10/11，IE8无法使用</li><li>很多API在IE8上无法使用，同样是兼容的难点</li><li>IE8的安全机制，使一些操作无法实现</li></ol>
 <p>本文使用原生JS对文件进行简单处理实现多文件上传，未使用其他插件。</p> 

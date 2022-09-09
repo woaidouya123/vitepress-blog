@@ -1,4 +1,7 @@
 # [记录贴——echarts图表动态刻度尺的简单实现](https://blog.csdn.net/woaidouya123/article/details/109152016)
+*2020-10-18 23:58:46*
+
+---
 <h1><a id="_1"></a>项目场景：</h1> 
 <p><span style="color:#999aaa;">如下图表：</span></p> 
 <p style="text-align:center;"><img alt="效果图" src="https://img-blog.csdnimg.cn/20201018231143322.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dvYWlkb3V5YTEyMw==,size_16,color_FFFFFF,t_70"></p> 

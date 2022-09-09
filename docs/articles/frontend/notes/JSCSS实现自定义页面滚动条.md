@@ -1,4 +1,7 @@
 # [JSCSS实现自定义页面滚动条](https://blog.csdn.net/woaidouya123/article/details/103484605)
+*2019-12-10 23:10:54*
+
+---
 <p>效果图如下：</p> 
 <p><img alt="sliber.gif" class="has" height="227" src="https://img-blog.csdnimg.cn/20191210225629683.gif" width="406"></p> 
 <p>首先隐藏原生的滚动条（仅限chrome浏览器）</p> 

@@ -1,4 +1,7 @@
 # [在Centos上搭建jupyter服务](https://blog.csdn.net/woaidouya123/article/details/103358228)
+*2019-12-02 22:17:55*
+
+---
 <ul><li>初衷</li></ul>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 方便在服务器上跑一些python爬虫脚本</p> 
 <ul><li>环境准备</li></ul>

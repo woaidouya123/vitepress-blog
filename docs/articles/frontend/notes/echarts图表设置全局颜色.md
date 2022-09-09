@@ -1,4 +1,7 @@
 # [echarts图表设置全局颜色](https://blog.csdn.net/woaidouya123/article/details/103866088)
+*2020-01-06 22:46:14*
+
+---
 <p>当项目需要定制echarts图表的颜色时，可以采用以下两种方法：</p> 
 <p>1.使用官方的<a href="https://echarts.baidu.com/theme-builder/">主题定制工具</a></p> 
 <p><img alt="https://echarts.baidu.com/theme-builder/" class="has" height="390" src="https://img-blog.csdnimg.cn/20200106222606373.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dvYWlkb3V5YTEyMw==,size_16,color_FFFFFF,t_70" width="800"></p> 

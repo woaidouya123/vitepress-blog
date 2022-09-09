@@ -1,4 +1,7 @@
 # [关于npm依赖包全局安装后报依赖包找不到的解决方法](https://blog.csdn.net/woaidouya123/article/details/103690638)
+*2019-12-24 22:36:26*
+
+---
 <p>npm全局安装命令</p> 
 
 ```bash

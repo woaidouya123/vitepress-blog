@@ -1,4 +1,7 @@
 # [js实现手动滑动条](https://blog.csdn.net/woaidouya123/article/details/81677086)
+*2018-08-15 00:39:30*
+
+---
 <p>效果如下图所示：</p> 
 <p><img alt="" class="has" height="123" src="https://img-blog.csdn.net/20180815002455377?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dvYWlkb3V5YTEyMw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" width="856"></p> 
 <p>滑动效果如下图：</p> 

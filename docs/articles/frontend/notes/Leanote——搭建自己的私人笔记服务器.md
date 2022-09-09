@@ -1,4 +1,7 @@
 # [Leanote——搭建自己的私人笔记服务器](https://blog.csdn.net/woaidouya123/article/details/81484028)
+*2018-08-07 17:29:26*
+
+---
 <p>话说好记性不如烂笔头，把平常遇到的问题通过笔记记下来对于程序猿来说实在是太有用了，找了一些笔记软件，除了oneNote,大多数都不免费提供云端同步功能。然而微软的服务器感觉速度实在太慢，而且不支持markdown功能。</p> 
 <p>最后让我找到了leanote,这是一个开源的笔记框架，你可以将它搭建在自己的服务器上。客户端支持windows/Mac/Linux/Android/IOS ,实在是相当强大。最关键的是它还能自动生成博客，省了好多事。。。最后说一下，这个框架是由国产的呦。</p> 
 <p><img alt="" class="has" height="168" src="https://img-blog.csdn.net/20180807164703970?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dvYWlkb3V5YTEyMw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" width="533"></p> 

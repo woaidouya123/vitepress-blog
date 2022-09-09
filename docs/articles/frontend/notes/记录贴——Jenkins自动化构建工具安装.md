@@ -1,4 +1,7 @@
 # [记录贴——Jenkins自动化构建工具安装](https://blog.csdn.net/woaidouya123/article/details/108988477)
+*2020-10-09 23:59:47*
+
+---
 <p>1.环境准备</p> 
 <p>1.1centos7</p> 
 <p>1.2jdk安装<a href="https://www.cnblogs.com/stulzq/p/9286878.html">可见链接</a></p> 

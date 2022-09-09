@@ -1,4 +1,7 @@
 # [记录贴——用Jenkins自动化构建部署微信小程序](https://blog.csdn.net/woaidouya123/article/details/109233075)
+*2020-10-23 00:39:39*
+
+---
 <p>最近开始接触小程序开发，顺便尝试了一下使用Jenkins对小程序进行自动化构建部署，</p> 
 <p>即：git仓库变更——&gt;jenkins自动构建——&gt;代码上传至微信小程序服务器</p> 
 <p>&nbsp;</p> 

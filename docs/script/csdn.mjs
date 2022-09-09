@@ -108,7 +108,7 @@ const getCSDNArticles = async ({ name, base, url, output }) => {
             );
             return {
                 title,
-                link: `./notes/${title}.md`,
+                link: `./notes/${title}`,
                 time
             }
         })

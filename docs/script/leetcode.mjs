@@ -314,9 +314,9 @@ const processQuestionText = (text) => {
     return text;
 }
 
-const parseTemplate = ({ title, link, question, solution, time }) =>
+const parseTemplate = ({ title, link, question, solution, time, tags }) =>
     `# [${title}](${link})
-*${time}*
+${time} ${tags.map(v => "\`" + v + "\`").join(" ")}
 ## 题目
 ${processQuestionText(question)}
 
@@ -331,17 +331,20 @@ for (let i = 0; i < recentSolutins.length; i++) {
     const solution = await getSolution(recentSolutins[i].node.slug);
     let title = `${question.questionFrontendId}.${question.translatedTitle}`.replace(/\s/g, '');
     let time = moment(solution.createdAt).format("YYYY-MM-DD HH:mm:ss");
+    let tags = solution.tags.map(v => v.nameTranslated || v.name || v.slug);
     generateMDFile({
         title,
         link: `https://leetcode.cn/problems/${question.titleSlug}`,
         question: question.translatedContent,
         solution: solution.content,
-        time
+        time,
+        tags
     })
     articleDir.push({
         title,
         link: `./notes/${title}`,
-        time
+        time,
+        tags
     })
 }
 

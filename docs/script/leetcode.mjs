@@ -2,6 +2,7 @@ import axios from 'axios';
 import * as fs from 'fs';
 import * as path from 'path';
 import moment from 'moment';
+import { lcDifficultyMap } from '../utils/data.js'
 
 const url = 'https://leetcode.cn/graphql/';
 const submitQueryUrl = 'https://leetcode.cn/graphql/noj-go/';
@@ -314,8 +315,9 @@ const processQuestionText = (text) => {
     return text;
 }
 
-const parseTemplate = ({ title, link, question, solution, time, tags }) =>
+const parseTemplate = ({ title, link, question, solution, time, tags, difficulty, diffName }) =>
     `# [${title}](${link})
+<span class="diff diff-${difficulty.toLowerCase()}">${diffName}</span>
 ${time} ${tags.map(v => "\`" + v + "\`").join(" ")}
 ## 题目
 ${processQuestionText(question)}
@@ -332,19 +334,25 @@ for (let i = 0; i < recentSolutins.length; i++) {
     let title = `${question.questionFrontendId}.${question.translatedTitle}`.replace(/\s/g, '');
     let time = moment(solution.createdAt).format("YYYY-MM-DD HH:mm:ss");
     let tags = solution.tags.map(v => v.nameTranslated || v.name || v.slug);
+    let difficulty = question.difficulty;
+    let diffName = lcDifficultyMap[question.difficulty].translateName;
     generateMDFile({
         title,
         link: `https://leetcode.cn/problems/${question.titleSlug}`,
         question: question.translatedContent,
         solution: solution.content,
         time,
-        tags
+        tags,
+        difficulty,
+        diffName
     })
     articleDir.push({
         title,
         link: `./notes/${title}`,
         time,
-        tags
+        tags,
+        difficulty,
+        diffName
     })
 }
 

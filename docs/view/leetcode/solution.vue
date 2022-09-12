@@ -1,7 +1,10 @@
 <template>
   <div class="container">
     <div class="article-item" v-for="item in lcArticles">
-      <a :href="item.link">{{item.title}}</a>
+      <div class="article-title">
+        <a :href="item.link">{{item.title}}</a>
+        <span :class="['diff-band', 'diff-'+item.difficulty.toLowerCase()]">{{item.diffName}}</span>
+      </div>
       <div class="article-info">
         <span class="publish-time">{{item.time}}</span>
         <span class="article-tag" v-for="tag in item.tags">{{tag}}</span>
@@ -20,6 +23,24 @@ import lcArticles from '../../data/lcArticles.json'
     box-shadow: 0 0 6px 1px #dddddd;
     margin: 20px 0;
     padding: 10px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .article-title {
+    display: flex;
+    justify-content: space-between;
+
+    .diff-band {
+      position: absolute;
+      width: 80px;
+      text-align: center;
+      right: -25px;
+      top: 5px;
+      transform: rotateZ(45deg);
+      color: #ffffff;
+      font-size: 12px;
+    }
   }
 
   .publish-time {

@@ -1,7 +1,8 @@
 <script setup>
 import { onMounted } from 'vue'
 import DefaultTheme from 'vitepress/theme'
-import { ElScrollbar } from 'element-plus'
+import { ElScrollbar, ElPopover } from 'element-plus'
+import ColorText from '../../components/colorText.vue'
 import 'element-plus/dist/index.css'
 const { Layout } = DefaultTheme
 onMounted(() => {
@@ -9,13 +10,29 @@ onMounted(() => {
     loadlive2d("live2d", "/blog/tororo/tororo.model.json")
   })
 })
+const goGamePage = () => {
+  location.href = location.origin + '/blog/articles/games/gobang'
+}
 </script>
 
 <template>
   <el-scrollbar class="srcoll">
     <Layout>
       <template #layout-bottom>
-        <canvas class="live2d" id="live2d" width="300" height="300"></canvas>
+        <div class="live2d">
+          <el-popover placement="top" trigger="hover" :show-after="3000">
+            <template #reference>
+              <canvas id="live2d" width="300" height="300"></canvas>
+            </template>
+            <template #default>
+              <div class="popover-box">
+                <color-text text="来玩个游戏喵~" @click="goGamePage"></color-text>
+              </div>
+            </template>
+          </el-popover>
+
+        </div>
+
       </template>
     </Layout>
   </el-scrollbar>

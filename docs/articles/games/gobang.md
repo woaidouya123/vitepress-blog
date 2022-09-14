@@ -4,7 +4,7 @@
     <el-switch v-model="robot" active-text="人机" active-value="white" :inactive-value="false" @change="refresh" />
     <el-button :icon="Refresh" @click="refresh" circle />
   </div>
-  <go-bang :lines="13" :width="500" :height="500" :black-first="blackFirst" :robot="robot" :key="gameKey" />
+  <go-bang :lines="15" :width="600" :height="600" :black-first="blackFirst" :robot="robot" :key="gameKey" />
 </div>
 
 <script lang="ts" setup>
@@ -25,7 +25,16 @@ const refresh = () => {
   .game-container {
     text-align: center
   }
-  .op .el-switch {
-    margin-right: 20px
+  .op {
+    margin-bottom: 10px;
+  }
+  .op .el-switch, .op .el-button {
+    margin-right: 20px;
+    --el-switch-on-color: rgb(165 136 104);
+    --el-color-primary: rgb(165 136 104);
+    --el-button-text-color: rgb(165 136 104);
+    --el-button-border-color: rgb(165 136 104);
+    --el-button-hover-border-color: rgb(165 136 104);
+    --el-button-hover-bg-color: rgba(165 136 104, .3);
   }
 </style>

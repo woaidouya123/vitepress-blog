@@ -21,19 +21,19 @@ export const useEvents = (canvas, blackFirst, robot, methods) => {
             if (isBlack) {
                 blackPieces.push(point);
                 if (judgeWin(point, blackPieces)) {
-                    drawGameOver(`Black Win!`);
+                    drawGameOver(`黑棋胜!`);
                     canvas.removeEventListener("mouseup", onMouseUp)
                 };
             } else {
                 whitePieces.push(point);
                 if (judgeWin(point, whitePieces)) {
-                    drawGameOver(`White Win!`)
+                    drawGameOver(`白棋胜!`)
                     canvas.removeEventListener("mouseup", onMouseUp)
                 };
             }
             isBlack = !isBlack;
             if (judgeDraw(whitePieces, blackPieces)) {
-                drawGameOver('平局');
+                drawGameOver('平局!');
             }
             return true;
         }

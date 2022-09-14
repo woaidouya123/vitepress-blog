@@ -4,6 +4,8 @@ let SP = 100;
 let LINES = 13;
 const WHITE = "#ffffff";
 const BLACK = "#000000";
+const STROKESTYLE = "#000000";
+const FLUSHSTYLE = "#ff0000";
 
 const drawBoard = (ctx) => {
     for (let i = 1; i <= LINES; i++) {
@@ -18,6 +20,18 @@ const drawBoard = (ctx) => {
     }
 }
 
+const flushPiece = (ctx, point) => {
+    let flushTime = 3 * 1000;
+    let timer = setTimeout(() => {
+        ctx.beginPath();
+        ctx.arc(point[0] * SP, point[1] * SP, SP / 3, 0, 2 * Math.PI);
+        ctx.closePath();
+        ctx.strokeStyle = STROKESTYLE;
+        ctx.stroke();
+        clearTimeout(timer);
+    }, flushTime);
+}
+
 const drawPiece = (ctx) => {
     return (point, isBlack) => {
         ctx.beginPath();
@@ -25,6 +39,23 @@ const drawPiece = (ctx) => {
         ctx.closePath();
         ctx.fillStyle = isBlack ? BLACK : WHITE;
         ctx.fill();
+        ctx.strokeStyle = FLUSHSTYLE;
+        ctx.stroke();
+        flushPiece(ctx, point);
+    }
+}
+
+const drawGameOver = (ctx) => {
+    return (isBlack) => {
+        console.log(isBlack);
+        const text = `${isBlack ? 'Black' : 'White'} Win!`
+        ctx.fillStyle = "#7c757555";
+        ctx.fillRect(0, 0, WIDTH * 2, HEIGHT * 2);
+        ctx.font = "30px Arial";
+        ctx.fillStyle = "#ff0000";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText(text, WIDTH, HEIGHT);
     }
 }
 
@@ -51,6 +82,7 @@ export const useCanvas = (canvas, options) => {
     drawBoard(ctx);
     return {
         drawPiece: drawPiece(ctx),
-        calcPoint
+        calcPoint,
+        drawGameOver: drawGameOver(ctx)
     };
 }

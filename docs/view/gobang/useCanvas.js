@@ -4,20 +4,30 @@ let SP = 100;
 let LINES = 13;
 const WHITE = "#ffffff";
 const BLACK = "#000000";
-const STROKESTYLE = "#000000";
+const STROKESTYLE = "#444444";
 const FLUSHSTYLE = "#ff0000";
 
 const drawBoard = (ctx) => {
+    ctx.save();
+    ctx.fillStyle = "rgb(165 136 104)";
+    ctx.strokeStyle = "rgb(9 8 8)";
+    ctx.rect(0, 0, WIDTH * 2, HEIGHT * 2);
+    ctx.fill();
     for (let i = 1; i <= LINES; i++) {
+        ctx.beginPath();
         ctx.moveTo(i * SP, SP);
         ctx.lineTo(i * SP, SP * LINES);
+        ctx.closePath();
         ctx.stroke();
     }
     for (let i = 1; i <= LINES; i++) {
+        ctx.beginPath();
         ctx.moveTo(SP, i * SP);
         ctx.lineTo(SP * LINES, i * SP);
+        ctx.closePath();
         ctx.stroke();
     }
+    ctx.restore();
 }
 
 const flushPiece = (ctx, point) => {
@@ -27,6 +37,7 @@ const flushPiece = (ctx, point) => {
         ctx.arc(point[0] * SP, point[1] * SP, SP / 3, 0, 2 * Math.PI);
         ctx.closePath();
         ctx.strokeStyle = STROKESTYLE;
+        ctx.lineWidth = 2;
         ctx.stroke();
         clearTimeout(timer);
     }, flushTime);
@@ -40,15 +51,14 @@ const drawPiece = (ctx) => {
         ctx.fillStyle = isBlack ? BLACK : WHITE;
         ctx.fill();
         ctx.strokeStyle = FLUSHSTYLE;
+        ctx.lineWidth = 1;
         ctx.stroke();
         flushPiece(ctx, point);
     }
 }
 
 const drawGameOver = (ctx) => {
-    return (isBlack) => {
-        console.log(isBlack);
-        const text = `${isBlack ? 'Black' : 'White'} Win!`
+    return (text) => {
         ctx.fillStyle = "#7c757555";
         ctx.fillRect(0, 0, WIDTH * 2, HEIGHT * 2);
         ctx.font = "30px Arial";
@@ -73,6 +83,9 @@ export const useCanvas = (canvas, options) => {
     WIDTH = options.width || WIDTH;
     HEIGHT = options.height || HEIGHT;
     LINES = options.lines || LINES;
+    // 纠正长度偏差
+    WIDTH = Math.floor(WIDTH / (LINES + 1)) * (LINES + 1);
+    HEIGHT = WIDTH;
     SP = WIDTH / (LINES + 1) * 2;
     canvas.width = WIDTH * 2;
     canvas.height = HEIGHT * 2;

@@ -10,38 +10,48 @@ const isOccupied = (point) => {
 
 
 export const useEvents = (canvas, blackFirst, robot, methods) => {
-    const { drawPiece, calcPoint, judgeWin, drawGameOver, getRobotStep } = methods;
+    const { drawPiece, calcPoint, judgeWin, drawGameOver, getRobotStep, judgeDraw } = methods;
     isBlack = blackFirst;
     whitePieces = [];
     blackPieces = [];
+    let moving = false;
     const putPiece = (point) => {
         if (point && !isOccupied(point)) {
             drawPiece(point, isBlack);
             if (isBlack) {
                 blackPieces.push(point);
                 if (judgeWin(point, blackPieces)) {
-                    drawGameOver(isBlack);
+                    drawGameOver(`黑棋胜!`);
                     canvas.removeEventListener("mouseup", onMouseUp)
                 };
             } else {
                 whitePieces.push(point);
                 if (judgeWin(point, whitePieces)) {
-                    drawGameOver(isBlack)
+                    drawGameOver(`白棋胜!`)
                     canvas.removeEventListener("mouseup", onMouseUp)
                 };
             }
             isBlack = !isBlack;
+            if (judgeDraw(whitePieces, blackPieces)) {
+                drawGameOver('平局!');
+            }
             return true;
         }
         return false;
     }
     const onMouseUp = (event) => {
+        if (moving) return;
         let { offsetX, offsetY } = event;
         let point = calcPoint(offsetX, offsetY);
         let putRet = putPiece(point);
         if (putRet && robot) {
             let robotPoint = isBlack ? getRobotStep(blackPieces, whitePieces) : getRobotStep(whitePieces, blackPieces);
-            putPiece(robotPoint);
+            moving = true;
+            setTimeout(() => {
+                putPiece(robotPoint);
+                moving = false;
+            }, 1000);
+
         }
     }
     canvas.addEventListener("mouseup", onMouseUp);

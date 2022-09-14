@@ -18,9 +18,3 @@ import home from './view/home/index.vue'
 </script>
 
 <home />
-
-<!-- [leetcode](./articles/leetcode/index.md)
-
-[前端笔记](./articles/frontend/index.md)
-
-[杂七杂八](./articles/others/index.md) -->

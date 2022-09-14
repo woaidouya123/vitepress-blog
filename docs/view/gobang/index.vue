@@ -31,7 +31,7 @@ onMounted(() => {
     height: props.height,
     lines: props.lines,
   });
-  const { judgeWin } = useJudge(props.lines);
+  const { judgeWin, judgeDraw } = useJudge(props.lines);
   const { getRobotStep } = useRobot(props.lines);
   useEvents(canvas.value, props.blackFirst, props.robot, {
     drawPiece,
@@ -39,6 +39,7 @@ onMounted(() => {
     judgeWin,
     drawGameOver,
     getRobotStep,
+    judgeDraw,
   });
 });
 </script>

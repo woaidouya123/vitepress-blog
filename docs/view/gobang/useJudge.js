@@ -78,7 +78,11 @@ export const useJudge = (lines) => {
             return true;
         }
     };
+    const judgeDraw = (spieces1, spieces2) => {
+        return spieces1.length + spieces2.length >= LINES * LINES;
+    }
     return {
         judgeWin,
+        judgeDraw,
     }
 }

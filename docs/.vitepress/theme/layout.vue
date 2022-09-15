@@ -24,14 +24,12 @@ const goGamePage = () => {
             <template #reference>
               <canvas
                 id="live2d"
+                :style="{
+                  width: '300px',
+                  height: '300px',
+                }"
                 width="600"
                 height="600"
-                style="
-                   {
-                    width: 300px;
-                    height: 300px;
-                  }
-                "
               ></canvas>
             </template>
             <template #default>

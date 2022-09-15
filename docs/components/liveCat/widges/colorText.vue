@@ -1,14 +1,15 @@
 <template>
-  <div class="container">
+  <a :class="{'container': true, 'link': href}" :href="props.href || '#'">
     <div class="text-content" :style="{'color': props.color}">{{props.text}}</div>
     <div class="text-mask" :style="{'color': props.bg}">{{props.text}}</div>
-  </div>
+  </a>
 </template>
 <script lang="ts" setup>
 type Props = {
   text: string,
   color?: string,
-  bg?: string
+  bg?: string,
+  href?: string
 };
 const props = withDefaults(defineProps<Props>(), {
   color: 'rgb(165 136 104)',
@@ -17,10 +18,24 @@ const props = withDefaults(defineProps<Props>(), {
 </script>
 <style scoped>
 .container {
+  display: block;
   position: relative;
   font-size: 18px;
   font-weight: bolder;
   text-align: center;
+  cursor: default;
+  user-select: none;
+  width: fit-content;
+}
+
+.container>div {
+  white-space: nowrap;
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.link {
   cursor: pointer;
 }
 

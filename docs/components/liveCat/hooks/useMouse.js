@@ -1,8 +1,12 @@
-export const useMouseOver = (callback, delayed) => {
+export const useMouseOver = (overCallback, outCallback, delayed) => {
     let timer = null;
     const mouseOver = () => {
+        if (timer) {
+            clearTimeout(timer);
+            timer = null;
+        }
         timer = setTimeout(() => {
-            callback();
+            overCallback();
             clearTimeout(timer);
             timer = null;
         }, delayed);
@@ -12,6 +16,12 @@ export const useMouseOver = (callback, delayed) => {
             clearTimeout(timer);
             timer = null;
         }
+        timer = setTimeout(() => {
+            outCallback();
+            clearTimeout(timer);
+            timer = null;
+        }, delayed);
+
     }
     return {
         mouseOver,

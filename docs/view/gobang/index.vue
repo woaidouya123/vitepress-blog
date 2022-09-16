@@ -25,6 +25,8 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const canvas = ref(null);
+const emit = defineEmits(['on-piece', 'on-game-over'])
+
 onMounted(() => {
   const { drawPiece, calcPoint, drawGameOver } = useCanvas(canvas.value, {
     width: props.width,
@@ -33,7 +35,7 @@ onMounted(() => {
   });
   const { judgeWin, judgeDraw } = useJudge(props.lines);
   const { getRobotStep } = useRobot(props.lines);
-  useEvents(canvas.value, props.blackFirst, props.robot, {
+  useEvents(canvas.value, emit, props.blackFirst, props.robot, {
     drawPiece,
     calcPoint,
     judgeWin,
@@ -47,6 +49,7 @@ onMounted(() => {
 .container {
   text-align: center;
 }
+
 canvas {
   display: inline-block;
 }

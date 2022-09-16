@@ -20,36 +20,45 @@ import { ElPopover } from "element-plus";
 import { onMounted, ref, watch } from "vue";
 import ColorText from "./widges/colorText.vue";
 import { useMouseOver } from "./hooks/useMouse";
+import { useEvents } from "./hooks/useEvents";
+import eventBus from "../../utils/eventBus";
 let visible = ref(false);
-const { mouseOut, mouseOver } = useMouseOver(() => {
-  catText.value = "来玩把游戏喵~";
-  catTextHref.value = withBase("/articles/games/gobang");
-  visible.value = true;
-}, () => {
-  visible.value = false;
-}, 3000)
+
 const { page } = useData();
 let catText = ref("");
 let catTextHref = ref("");
-watch(page, (val) => {
+
+const showMessage = (({ text, href = "", delay = 500 }) => {
   visible.value = false;
-  if (val.title) {
+  if (text) {
     setTimeout(() => {
-      catText.value = `你在看${val.title}喵~`;
-      catTextHref.value = "";
+      catText.value = text;
+      catTextHref.value = href;
       visible.value = true;
       mouseOut();
-    }, 500)
-
+    }, delay)
   }
+})
 
+const { mouseOut, mouseOver } = useMouseOver(() => {
+  showMessage({
+    text: "来玩把游戏喵~",
+    href: withBase("/articles/games/gobang"),
+    delay: 10
+  })
+}, () => {
+  visible.value = false;
+}, 3000)
+
+useEvents(showMessage, eventBus);
+
+watch(page, (val) => {
+  showMessage({ text: `你在看${val.title}喵~` });
 })
 onMounted(() => {
   import("../../utils/live2d").then(() => {
     loadlive2d("live2d", "/blog/tororo/tororo.model.json");
-    catText.value = `你好~喵~`;
-    visible.value = true;
-    mouseOut();
+    showMessage({ text: `你好~喵~` });
   });
 });
 </script>

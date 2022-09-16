@@ -9,31 +9,38 @@ const isOccupied = (point) => {
 }
 
 
-export const useEvents = (canvas, blackFirst, robot, methods) => {
+export const useEvents = (canvas, emit, blackFirst, robot, methods) => {
     const { drawPiece, calcPoint, judgeWin, drawGameOver, getRobotStep, judgeDraw } = methods;
     isBlack = blackFirst;
     whitePieces = [];
     blackPieces = [];
     let moving = false;
-    const putPiece = (point) => {
+    const putPiece = (point, isRobot) => {
         if (point && !isOccupied(point)) {
             drawPiece(point, isBlack);
+            emit('on-piece', { point, isBlack, isRobot })
             if (isBlack) {
                 blackPieces.push(point);
                 if (judgeWin(point, blackPieces)) {
                     drawGameOver(`黑棋胜!`);
-                    canvas.removeEventListener("mouseup", onMouseUp)
+                    canvas.removeEventListener("mouseup", onMouseUp);
+                    emit('on-game-over', { isBlack, isRobot });
+                    return false;
                 };
             } else {
                 whitePieces.push(point);
                 if (judgeWin(point, whitePieces)) {
                     drawGameOver(`白棋胜!`)
-                    canvas.removeEventListener("mouseup", onMouseUp)
+                    canvas.removeEventListener("mouseup", onMouseUp);
+                    emit('on-game-over', { isBlack, isRobot });
+                    return false;
                 };
             }
             isBlack = !isBlack;
             if (judgeDraw(whitePieces, blackPieces)) {
                 drawGameOver('平局!');
+                emit('on-game-over', { isDraw: true })
+                return false;
             }
             return true;
         }
@@ -43,14 +50,14 @@ export const useEvents = (canvas, blackFirst, robot, methods) => {
         if (moving) return;
         let { offsetX, offsetY } = event;
         let point = calcPoint(offsetX, offsetY);
-        let putRet = putPiece(point);
+        let putRet = putPiece(point, false);
         if (putRet && robot) {
             let robotPoint = isBlack ? getRobotStep(blackPieces, whitePieces) : getRobotStep(whitePieces, blackPieces);
             moving = true;
             setTimeout(() => {
-                putPiece(robotPoint);
+                putPiece(robotPoint, true);
                 moving = false;
-            }, 1000);
+            }, 800);
 
         }
     }

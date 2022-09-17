@@ -47,7 +47,6 @@ import lcArticles from '../../data/lcArticles.json'
     font-weight: normal;
     opacity: 0.5;
   }
-
   .article-tag {
     font-size: 12px;
     display: inline-block;

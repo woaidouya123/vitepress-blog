@@ -4,7 +4,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, Ref } from 'vue'
 import { useCanvas } from './useCanvas'
 import { useEvents } from './useEvents'
 import { useJudge } from './useJudge'
@@ -23,7 +23,7 @@ const props = withDefaults(defineProps<Props>(), {
   blackFirst: true,
   robot: false,
 })
-const canvas = ref(null)
+const canvas: Ref = ref(null)
 const emit = defineEmits(['on-piece', 'on-game-over'])
 
 onMounted(() => {

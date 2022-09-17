@@ -5,7 +5,7 @@
     </ClientOnly>
   </div>
 </template>
-<script setup>
+<script lang="ts" setup>
 import lcData from '../../data/lcData.json'
 import moment from 'moment'
 import HeatMap from '../../components/heatMap.vue'

@@ -1,20 +1,20 @@
 <template>
-  <a :class="{'container': true, 'link': href}" :href="props.href || '#'">
-    <div class="text-content" :style="{'color': props.color}">{{props.text}}</div>
-    <div class="text-mask" :style="{'color': props.bg}">{{props.text}}</div>
+  <a :class="{ container: true, link: href }" :href="props.href || '#'">
+    <div class="text-content" :style="{ color: props.color }">{{ props.text }}</div>
+    <div class="text-mask" :style="{ color: props.bg }">{{ props.text }}</div>
   </a>
 </template>
 <script lang="ts" setup>
 type Props = {
-  text: string,
-  color?: string,
-  bg?: string,
+  text: string
+  color?: string
+  bg?: string
   href?: string
-};
+}
 const props = withDefaults(defineProps<Props>(), {
   color: 'rgb(165 136 104)',
-  bg: 'rgb(9 8 8)'
-});
+  bg: 'rgb(9 8 8)',
+})
 </script>
 <style scoped>
 .container {
@@ -28,7 +28,7 @@ const props = withDefaults(defineProps<Props>(), {
   width: fit-content;
 }
 
-.container>div {
+.container > div {
   white-space: nowrap;
   max-width: 300px;
   overflow: hidden;

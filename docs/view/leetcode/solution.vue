@@ -2,12 +2,12 @@
   <div class="container">
     <div class="article-item" v-for="item in lcArticles">
       <div class="article-title">
-        <a :href="item.link">{{item.title}}</a>
-        <span :class="['diff-band', 'diff-'+item.difficulty.toLowerCase()]">{{item.diffName}}</span>
+        <a :href="item.link">{{ item.title }}</a>
+        <span :class="['diff-band', 'diff-' + item.difficulty.toLowerCase()]">{{ item.diffName }}</span>
       </div>
       <div class="article-info">
-        <span class="publish-time">{{item.time}}</span>
-        <span class="article-tag" v-for="tag in item.tags">{{tag}}</span>
+        <span class="publish-time">{{ item.time }}</span>
+        <span class="article-tag" v-for="tag in item.tags">{{ tag }}</span>
       </div>
     </div>
   </div>
@@ -17,7 +17,6 @@ import lcArticles from '../../data/lcArticles.json'
 </script>
 <style lang="less" scoped>
 .container {
-
   .article-item {
     border-radius: 6px;
     box-shadow: 0 0 6px 1px #dddddd;
@@ -46,7 +45,7 @@ import lcArticles from '../../data/lcArticles.json'
   .publish-time {
     font-size: 14px;
     font-weight: normal;
-    opacity: .5;
+    opacity: 0.5;
   }
 
   .article-tag {

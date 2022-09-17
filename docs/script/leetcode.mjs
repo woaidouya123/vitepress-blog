@@ -1,34 +1,33 @@
-import axios from 'axios';
-import * as fs from 'fs';
-import * as path from 'path';
-import moment from 'moment';
+import axios from 'axios'
+import * as fs from 'fs'
+import * as path from 'path'
+import moment from 'moment'
 import { lcDifficultyMap } from '../utils/data.js'
 
-const url = 'https://leetcode.cn/graphql/';
-const submitQueryUrl = 'https://leetcode.cn/graphql/noj-go/';
-const userName = 'woaidouya123';
+const url = 'https://leetcode.cn/graphql/'
+const submitQueryUrl = 'https://leetcode.cn/graphql/noj-go/'
+const userName = 'woaidouya123'
 
-const params = process.argv;
+const params = process.argv
 
 // 图片代理(需要代理服务器进行相应配置)
-const proxy = (params.find(v => v.startsWith('--proxy=')) || "--proxy=").slice(8);
+const proxy = (params.find((v) => v.startsWith('--proxy=')) || '--proxy=').slice(8)
 
 // 获取近一年提交
 const queryYearSubmit = (userSlug) => ({
-    query: `query userProfileCalendar($userSlug: String!, $year: Int) {
+  query: `query userProfileCalendar($userSlug: String!, $year: Int) {
         userCalendar(userSlug: $userSlug, year: $year) {
             streak
             totalActiveDays
             submissionCalendar
         }
     }`,
-    variables: { userSlug },
-});
-
+  variables: { userSlug },
+})
 
 // 获取最近题解
 const recentSolutionParams = (userSlug) => ({
-    query: `query profileSolutionArticles($userSlug: String!, $skip: Int, $first: Int) {
+  query: `query profileSolutionArticles($userSlug: String!, $skip: Int, $first: Int) {
         solutionArticles(userSlug: $userSlug, skip: $skip, first: $first) {
             pageInfo {
             hasNextPage
@@ -51,13 +50,13 @@ const recentSolutionParams = (userSlug) => ({
             }
         }
     }`,
-    variables: { userSlug },
-});
+  variables: { userSlug },
+})
 
 // 获取题目
 const questionParams = (titleSlug) => ({
-    operationName: "questionData",
-    query: `query questionData($titleSlug: String!) {
+  operationName: 'questionData',
+  query: `query questionData($titleSlug: String!) {
         question(titleSlug: $titleSlug) {
           questionId
           questionFrontendId
@@ -133,13 +132,13 @@ const questionParams = (titleSlug) => ({
         }
       }
       `,
-    variables: { titleSlug },
-});
+  variables: { titleSlug },
+})
 
 // 获取题解
 const articleParams = (slug) => ({
-    operationName: "solutionDetailArticle",
-    query: `query solutionDetailArticle($slug: String!, $orderBy: SolutionArticleOrderBy!) {
+  operationName: 'solutionDetailArticle',
+  query: `query solutionDetailArticle($slug: String!, $orderBy: SolutionArticleOrderBy!) {
         solutionArticle(slug: $slug, orderBy: $orderBy) {
           ...solutionArticle
           content
@@ -221,104 +220,101 @@ const articleParams = (slug) => ({
         __typename
       }
       `,
-    variables: { orderBy: "DEFAULT", slug },
-});
+  variables: { orderBy: 'DEFAULT', slug },
+})
 
 const options = {
-    method: 'POST',
-    url,
-    headers: {},
-};
+  method: 'POST',
+  url,
+  headers: {},
+}
 
 const submitOptions = {
-    method: 'POST',
-    url: submitQueryUrl,
-    headers: {},
-};
+  method: 'POST',
+  url: submitQueryUrl,
+  headers: {},
+}
 
 // 获取近一年提交数据
 const generageYearSubmitFile = () => {
-    return axios.request({
-        ...submitOptions,
-        data: queryYearSubmit(userName)
-    }).then(res => {
-        const data = res.data.data;
-        const __dirname = path.resolve()
-        const filePath = path.resolve(
-            __dirname,
-            `docs/data/lcData.json`
-        );
-        fs.writeFileSync(
-            filePath,
-            JSON.stringify(data),
-            {
-                encoding: 'utf8',
-            }
-        );
+  return axios
+    .request({
+      ...submitOptions,
+      data: queryYearSubmit(userName),
+    })
+    .then((res) => {
+      const data = res.data.data
+      const __dirname = path.resolve()
+      const filePath = path.resolve(__dirname, 'docs/data/lcData.json')
+      fs.writeFileSync(filePath, JSON.stringify(data), {
+        encoding: 'utf8',
+      })
     })
 }
 
 // 获取最近的题解
 const getRecentSolution = () => {
-    return axios.request({
-        ...options,
-        data: recentSolutionParams(userName)
-    }).then(res => {
-        return res.data.data.solutionArticles.edges;
+  return axios
+    .request({
+      ...options,
+      data: recentSolutionParams(userName),
+    })
+    .then((res) => {
+      return res.data.data.solutionArticles.edges
     })
 }
 
 // 获取题解
 const getSolution = (slug) => {
-    return axios.request({
-        ...options,
-        data: articleParams(slug)
-    }).then(res => {
-        return res.data.data.solutionArticle;
+  return axios
+    .request({
+      ...options,
+      data: articleParams(slug),
+    })
+    .then((res) => {
+      return res.data.data.solutionArticle
     })
 }
 
 // 获取题目
 const getQuestion = (title) => {
-    return axios.request({
-        ...options,
-        data: questionParams(title)
-    }).then(res => {
-        return res.data.data.question;
+  return axios
+    .request({
+      ...options,
+      data: questionParams(title),
+    })
+    .then((res) => {
+      return res.data.data.question
     })
 }
 
 // 写入文件
 const generateMDFile = (data) => {
-    const content = parseTemplate(data);
-    const __dirname = path.resolve()
-    const filePath = path.resolve(
-        __dirname,
-        `docs/articles/leetcode/notes/${data.title}.md`
-    );
-    fs.writeFileSync(
-        filePath,
-        content,
-        {
-            encoding: 'utf8',
-        }
-    );
+  const content = parseTemplate(data)
+  const __dirname = path.resolve()
+  const filePath = path.resolve(__dirname, `docs/articles/leetcode/notes/${data.title}.md`)
+  fs.writeFileSync(filePath, content, {
+    encoding: 'utf8',
+  })
 }
 
-const recentSolutins = await getRecentSolution();
+const recentSolutins = await getRecentSolution()
 
 const processQuestionText = (text) => {
-    // 格式处理
-    text = text.replace(/<([ =]+)/g, '&lt;$1').replace(/\t/g, '  ').replace(/<(\/)?font.*?>/g, '');
-    // 图片代理
-    proxy && (text = text.replace(/(src=")(http(s)?:\/\/.*?\.(png|gif|jpeg))/g, `$1${proxy}?url=$2`));
-    return text;
+  // 格式处理
+  text = text
+    .replace(/<([ =]+)/g, '&lt;$1')
+    .replace(/\t/g, '  ')
+    .replace(/<(\/)?font.*?>/g, '')
+  // 图片代理
+  proxy && (text = text.replace(/(src=")(http(s)?:\/\/.*?\.(png|gif|jpeg))/g, `$1${proxy}?url=$2`))
+  return text
 }
 
 const parseTemplate = ({ title, link, question, solution, time, tags, difficulty, diffName }) =>
-    `# [${title}](${link})
+  `# [${title}](${link})
 <span class="diff diff-${difficulty.toLowerCase()}">${diffName}</span>
-${time} ${tags.map(v => "\`" + v + "\`").join(" ")}
+${time} ${tags.map((v) => `\`${v}\``).join(' ')}
 ## 题目
 ${processQuestionText(question)}
 
@@ -326,54 +322,46 @@ ${processQuestionText(question)}
 ${solution}
 `
 
-let articleDir = [];
+const articleDir = []
 
 for (let i = 0; i < recentSolutins.length; i++) {
-    const question = await getQuestion(recentSolutins[i].node.question.titleSlug);
-    const solution = await getSolution(recentSolutins[i].node.slug);
-    let title = `${question.questionFrontendId}.${question.translatedTitle}`.replace(/\s/g, '');
-    let time = moment(solution.createdAt).format("YYYY-MM-DD HH:mm:ss");
-    let tags = solution.tags.map(v => v.nameTranslated || v.name || v.slug);
-    let difficulty = question.difficulty;
-    let diffName = lcDifficultyMap[question.difficulty].translateName;
-    generateMDFile({
-        title,
-        link: `https://leetcode.cn/problems/${question.titleSlug}`,
-        question: question.translatedContent,
-        solution: solution.content,
-        time,
-        tags,
-        difficulty,
-        diffName
-    })
-    articleDir.push({
-        title,
-        link: `./notes/${title}`,
-        time,
-        tags,
-        difficulty,
-        diffName
-    })
+  const question = await getQuestion(recentSolutins[i].node.question.titleSlug)
+  const solution = await getSolution(recentSolutins[i].node.slug)
+  const title = `${question.questionFrontendId}.${question.translatedTitle}`.replace(/\s/g, '')
+  const time = moment(solution.createdAt).format('YYYY-MM-DD HH:mm:ss')
+  const tags = solution.tags.map((v) => v.nameTranslated || v.name || v.slug)
+  const difficulty = question.difficulty
+  const diffName = lcDifficultyMap[question.difficulty].translateName
+  generateMDFile({
+    title,
+    link: `https://leetcode.cn/problems/${question.titleSlug}`,
+    question: question.translatedContent,
+    solution: solution.content,
+    time,
+    tags,
+    difficulty,
+    diffName,
+  })
+  articleDir.push({
+    title,
+    link: `./notes/${title}`,
+    time,
+    tags,
+    difficulty,
+    diffName,
+  })
 }
 
-articleDir.sort((a, b) => moment(b.time).valueOf() - moment(a.time).valueOf());
+articleDir.sort((a, b) => moment(b.time).valueOf() - moment(a.time).valueOf())
 
 // 写入目录数据存储文件
 const generateLcArticleJson = (content) => {
-    const __dirname = path.resolve();
-    const filePath = path.resolve(
-        __dirname,
-        `docs/data/lcArticles.json`
-    );
-    fs.writeFileSync(
-        filePath,
-        content,
-        {
-            encoding: 'utf8',
-        }
-    );
+  const __dirname = path.resolve()
+  const filePath = path.resolve(__dirname, 'docs/data/lcArticles.json')
+  fs.writeFileSync(filePath, content, {
+    encoding: 'utf8',
+  })
 }
 
-generateLcArticleJson(JSON.stringify(articleDir));
-generageYearSubmitFile();
-
+generateLcArticleJson(JSON.stringify(articleDir))
+generageYearSubmitFile()

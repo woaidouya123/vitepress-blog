@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div v-for="item in csdnOthers">
-      <a :href="item.link">{{item.title}}</a>
+      <a :href="item.link">{{ item.title }}</a>
     </div>
   </div>
 </template>

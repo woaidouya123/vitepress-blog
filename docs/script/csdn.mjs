@@ -50,9 +50,9 @@ const processText = (text) => {
   return text
 }
 
-const articleTemplate = ({ title, content, link, time }) =>
+const articleTemplate = ({ title, content, link, time, tags }) =>
   `# [${title}](${link})
-*${time}*
+${time} ${tags.map((v) => `\`${v}\``).join(' ')}
 
 ---
 ${content}
@@ -73,38 +73,46 @@ const getCSDNArticles = async ({ name, base, url, output }) => {
     .then((res) => {
       const $ = load(res.data)
       const articles = $('.column_article_list > li')
-      const urls = []
+      const articleList = []
       articles.map(function () {
         const article = $(this)
         const url = article.find('a')[0].attribs.href
-        urls.push(url)
+        const desc = article.find('.column_article_desc')[0].children[0].data
+        articleList.push({ url, desc })
         return url
       })
-      return urls
+      return articleList
     })
     .catch((err) => {
       console.error(err)
     })
 
   const dirData = await Promise.all(
-    articleUrls.map((artUrl) => {
-      return axios.get(artUrl).then((res) => {
+    articleUrls.map(({ url, desc }) => {
+      return axios.get(url).then((res) => {
         const $ = load(res.data)
         const title = $('#articleContentId').html().replace(/\s/g, '').replace(/[+]/g, '')
         const content = processText($('#content_views').html().trim())
+        const tags = $('.artic-tag-box a[data-report-click]')
+          .map(function () {
+            return $(this).html()
+          })
+          .toArray()
         const time = $('.time')
           .html()
           .trim()
           .match(/[0-9\s-:]+/)[0]
         const __dirname = path.resolve()
         const filePath = path.resolve(__dirname, `docs/articles/${base}/notes/${title}.md`)
-        fs.writeFileSync(filePath, articleTemplate({ title, content, link: artUrl, time }), {
+        fs.writeFileSync(filePath, articleTemplate({ title, content, link: url, time, tags }), {
           encoding: 'utf8',
         })
         return {
           title,
           link: `./notes/${title}`,
           time,
+          tags,
+          desc,
         }
       })
     })

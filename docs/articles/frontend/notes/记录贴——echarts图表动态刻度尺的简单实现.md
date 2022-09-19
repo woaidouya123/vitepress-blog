@@ -1,5 +1,5 @@
 # [记录贴——echarts图表动态刻度尺的简单实现](https://blog.csdn.net/woaidouya123/article/details/109152016)
-*2020-10-18 23:58:46*
+2020-10-18 23:58:46 `javascript` `echarts` `刻度尺` `自定义刻度显示`
 
 ---
 <h1><a id="_1"></a>项目场景：</h1> 

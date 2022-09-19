@@ -1,5 +1,5 @@
 # [web前端读取串口数据](https://blog.csdn.net/woaidouya123/article/details/105681003)
-*2020-04-22 15:11:43*
+2020-04-22 15:11:43 `js` `前端读取串口数据` `html` `IE` `ActiveX`
 
 ---
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">

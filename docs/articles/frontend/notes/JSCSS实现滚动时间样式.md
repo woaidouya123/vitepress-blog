@@ -1,5 +1,5 @@
 # [JSCSS实现滚动时间样式](https://blog.csdn.net/woaidouya123/article/details/103706264)
-*2019-12-25 22:08:52*
+2019-12-25 22:08:52 `时间滚动` `JS` `CSS`
 
 ---
 <p>效果图：</p> 

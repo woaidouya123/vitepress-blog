@@ -1,5 +1,5 @@
 # [js实现手动滑动条](https://blog.csdn.net/woaidouya123/article/details/81677086)
-*2018-08-15 00:39:30*
+2018-08-15 00:39:30 `js` `html` `滑动条`
 
 ---
 <p>效果如下图所示：</p> 

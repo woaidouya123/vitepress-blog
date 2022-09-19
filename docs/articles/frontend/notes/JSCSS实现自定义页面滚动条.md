@@ -1,5 +1,5 @@
 # [JSCSS实现自定义页面滚动条](https://blog.csdn.net/woaidouya123/article/details/103484605)
-*2019-12-10 23:10:54*
+2019-12-10 23:10:54 `JS` `CSS` `滚动条`
 
 ---
 <p>效果图如下：</p> 

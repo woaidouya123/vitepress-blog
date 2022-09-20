@@ -57,7 +57,7 @@ const { mouseOut, mouseOver } = useMouseOver(
 useEvents(showMessage, eventBus)
 
 watch(page, (val) => {
-  showMessage({ text: `你在看${val.title}喵~` })
+  val.title && showMessage({ text: `你在看${val.title}喵~` })
 })
 onMounted(() => {
   import('../../utils/live2d').then(() => {

@@ -1,10 +1,13 @@
 <template>
-  <a :class="{ container: true, link: href }" :href="props.href || '#'">
-    <div class="text-content" :style="{ color: props.color }">{{ props.text }}</div>
-    <div class="text-mask" :style="{ color: props.bg }">{{ props.text }}</div>
+  <a :class="{ nolink: !href }" :href="props.href || '#'">
+    <div class="container" v-for="item in textArr">
+      <div class="text-content" :style="{ color: props.color }">{{ item }}</div>
+      <div class="text-mask" :style="{ color: props.bg }">{{ item }}</div>
+    </div>
   </a>
 </template>
 <script lang="ts" setup>
+import { watchEffect, ref, Ref } from 'vue'
 type Props = {
   text: string
   color?: string
@@ -15,6 +18,10 @@ const props = withDefaults(defineProps<Props>(), {
   color: 'rgb(165 136 104)',
   bg: 'rgb(9 8 8)',
 })
+const textArr: Ref = ref([])
+watchEffect(() => {
+  textArr.value = props.text.match(/.{1,10}/g) || []
+})
 </script>
 <style scoped>
 .container {
@@ -23,20 +30,19 @@ const props = withDefaults(defineProps<Props>(), {
   font-size: 18px;
   font-weight: bolder;
   text-align: center;
-  cursor: default;
   user-select: none;
-  width: fit-content;
+  max-width: 300px;
 }
 
 .container > div {
   white-space: nowrap;
-  max-width: 300px;
   overflow: hidden;
   text-overflow: ellipsis;
+  text-align: center;
 }
 
-.link {
-  cursor: pointer;
+.nolink {
+  cursor: default;
 }
 
 .text-content {

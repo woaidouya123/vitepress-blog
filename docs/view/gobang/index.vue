@@ -9,6 +9,7 @@ import { useCanvas } from './useCanvas'
 import { useEvents } from './useEvents'
 import { useJudge } from './useJudge'
 import { useRobot } from './useRobot'
+import { useAudio } from './useAudio'
 type Props = {
   width?: number
   height?: number
@@ -34,6 +35,7 @@ onMounted(() => {
   })
   const { judgeWin, judgeDraw } = useJudge(props.lines)
   const { getRobotStep } = useRobot(props.lines)
+  const { playPiece } = useAudio()
   useEvents(canvas.value, emit, props.blackFirst, props.robot, {
     drawPiece,
     calcPoint,
@@ -41,6 +43,7 @@ onMounted(() => {
     drawGameOver,
     getRobotStep,
     judgeDraw,
+    playPiece,
   })
 })
 </script>

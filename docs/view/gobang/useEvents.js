@@ -9,7 +9,7 @@ const isOccupied = (point) => {
 }
 
 export const useEvents = (canvas, emit, blackFirst, robot, methods) => {
-  const { drawPiece, calcPoint, judgeWin, drawGameOver, getRobotStep, judgeDraw } = methods
+  const { drawPiece, calcPoint, judgeWin, drawGameOver, getRobotStep, judgeDraw, playPiece } = methods
   isBlack = blackFirst
   whitePieces = []
   blackPieces = []
@@ -17,6 +17,7 @@ export const useEvents = (canvas, emit, blackFirst, robot, methods) => {
   const putPiece = (point, isRobot) => {
     if (point && !isOccupied(point)) {
       drawPiece(point, isBlack)
+      playPiece()
       emit('on-piece', { point, isBlack, isRobot })
       if (isBlack) {
         blackPieces.push(point)

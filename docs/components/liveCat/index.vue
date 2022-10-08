@@ -60,11 +60,15 @@ watch(page, (val) => {
   val.title && showMessage({ text: `你在看${val.title}喵~` })
 })
 onMounted(() => {
-  import('../../utils/live2d').then(() => {
-    // eslint-disable-next-line no-undef
-    loadlive2d('live2d', '/blog/tororo/tororo.model.json')
-    showMessage({ text: `你好~喵~` })
-  })
+  const img = new Image()
+  img.src = '/blog/tororo/moc/tororo.2048/texture_00.png'
+  img.onload = () => {
+    import('../../utils/live2d').then(() => {
+      // eslint-disable-next-line no-undef
+      loadlive2d('live2d', '/blog/tororo/tororo.model.json')
+      showMessage({ text: `你好~喵~` })
+    })
+  }
 })
 </script>
 <style scoped></style>

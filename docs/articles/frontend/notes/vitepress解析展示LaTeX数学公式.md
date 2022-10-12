@@ -13,16 +13,11 @@
 <h4><a id="markdownitkatex_9"></a>一、markdown-it-katex</h4> 
 <p>一个支持 KaTeX 语法的数学公式渲染器</p> 
 <h5><a id="1_11"></a>1.安装库</h5> 
-
-```
-<span class="token function">npm</span> <span class="token function">install</span> markdown-it-katex -D
-
-``` 
+<pre><code class="prism language-bash"><span class="token function">npm</span> <span class="token function">install</span> markdown-it-katex -D
+</code></pre> 
 <h5><a id="2_15"></a>2.配置插件</h5> 
 <p>修改<code>.vitepress/config.js</code>配置文件<br> <strong>由于vitepress编译生成静态html文件时，无法识别插件生成的特殊标签，故需在编译时进行处理，将特殊标签标记为自定义标签，防止编译报错</strong></p> 
-
-```
-<span class="token keyword">import</span> <span class="token punctuation">{<!-- --></span> defineConfig <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'vitepress'</span>
+<pre><code class="prism language-js"><span class="token keyword">import</span> <span class="token punctuation">{<!-- --></span> defineConfig <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'vitepress'</span>
 <span class="token keyword">import</span> markdownItKatex <span class="token keyword">from</span> <span class="token string">'markdown-it-katex'</span>
 <span class="token keyword">const</span> customElements <span class="token operator">=</span> <span class="token punctuation">[</span>
   <span class="token string">'math'</span><span class="token punctuation">,</span>
@@ -113,7 +108,7 @@
 <span class="token punctuation">]</span>
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token function">defineConfig</span><span class="token punctuation">(</span><span class="token punctuation">{<!-- --></span>
   <span class="token literal-property property">markdown</span><span class="token operator">:</span> <span class="token punctuation">{<!-- --></span>
-    <span class="token function-variable function">config</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">md</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{<!-- --></span>
+    <span class="token function-variable function">config</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">md</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{<!-- --></span>
       md<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>markdownItKatex<span class="token punctuation">)</span>
     <span class="token punctuation">}</span>
   <span class="token punctuation">}</span><span class="token punctuation">,</span>
@@ -121,36 +116,27 @@
   <span class="token literal-property property">vue</span><span class="token operator">:</span> <span class="token punctuation">{<!-- --></span>
     <span class="token literal-property property">template</span><span class="token operator">:</span> <span class="token punctuation">{<!-- --></span>
       <span class="token literal-property property">compilerOptions</span><span class="token operator">:</span> <span class="token punctuation">{<!-- --></span>
-        <span class="token function-variable function">isCustomElement</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">tag</span><span class="token punctuation">)</span> <span class="token operator">=></span> customElements<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span>tag<span class="token punctuation">)</span>
+        <span class="token function-variable function">isCustomElement</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">tag</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> customElements<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span>tag<span class="token punctuation">)</span>
       <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span>
-
-``` 
+</code></pre> 
 <h5><a id="3_126"></a>3.引入样式</h5> 
 <p>前两步已经可以将数学公式转译成HTML标签，但此时样式是错乱的，需要引入插件附带的样式，可修改<code>.vitepress/config.js</code>配置文件，在<code>head</code>中添加需要的外置css文件，也可以下载css文件后放入项目内。</p> 
-
-```
-<span class="token literal-property property">head</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+<pre><code class="prism language-javascript"><span class="token literal-property property">head</span><span class="token operator">:</span> <span class="token punctuation">[</span>
   <span class="token punctuation">[</span><span class="token string">'link'</span><span class="token punctuation">,</span> <span class="token punctuation">{<!-- --></span> <span class="token literal-property property">rel</span><span class="token operator">:</span> <span class="token string">'stylesheet'</span><span class="token punctuation">,</span> <span class="token literal-property property">href</span><span class="token operator">:</span> <span class="token string">'https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css'</span><span class="token punctuation">,</span> <span class="token literal-property property">crossorigin</span><span class="token operator">:</span> <span class="token string">''</span> <span class="token punctuation">}</span><span class="token punctuation">]</span>
 <span class="token punctuation">]</span>
-
-``` 
+</code></pre> 
 <p>此时，md文件中的数学公式就可以正常编译和显示了。</p> 
 <h4><a id="markdownitmathjax3_135"></a>二、markdown-it-mathjax3</h4> 
 <p>一个从 markdown-it-katex 改造而来、额外增加了 MathJax v3 和 SVG 渲染支持的插件</p> 
 <h5><a id="1_137"></a>1.安装库</h5> 
-
-```
-<span class="token function">npm</span> <span class="token function">install</span> markdown-it-mathjax3 -D
-
-``` 
+<pre><code class="prism language-bash"><span class="token function">npm</span> <span class="token function">install</span> markdown-it-mathjax3 -D
+</code></pre> 
 <h5><a id="2_141"></a>2.配置插件</h5> 
 <p>修改<code>.vitepress/config.js</code>配置文件<br> <strong>markdown-it-mathjax3的配置与markdown-it-katex基本相同，但由于markdown-it-mathjax3使用svg渲染，增加了一些自定义标签，配置时同样需要将这些标签标记为自定义标签，防止编译出错</strong></p> 
-
-```
-<span class="token keyword">import</span> mathjax3 <span class="token keyword">from</span> <span class="token string">'markdown-it-mathjax3'</span><span class="token punctuation">;</span>
+<pre><code class="prism language-js"><span class="token keyword">import</span> mathjax3 <span class="token keyword">from</span> <span class="token string">'markdown-it-mathjax3'</span><span class="token punctuation">;</span>
 <span class="token keyword">const</span> customElements <span class="token operator">=</span> <span class="token punctuation">[</span>
   <span class="token string">'math'</span><span class="token punctuation">,</span>
   <span class="token string">'maction'</span><span class="token punctuation">,</span>
@@ -242,20 +228,19 @@
 <span class="token punctuation">]</span><span class="token punctuation">;</span>
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{<!-- --></span>
   <span class="token literal-property property">markdown</span><span class="token operator">:</span> <span class="token punctuation">{<!-- --></span>
-    <span class="token function-variable function">config</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">md</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{<!-- --></span>
+    <span class="token function-variable function">config</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">md</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{<!-- --></span>
       md<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>mathjax3<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span><span class="token punctuation">,</span>
   <span class="token punctuation">}</span><span class="token punctuation">,</span>
   <span class="token literal-property property">vue</span><span class="token operator">:</span> <span class="token punctuation">{<!-- --></span>
     <span class="token literal-property property">template</span><span class="token operator">:</span> <span class="token punctuation">{<!-- --></span>
       <span class="token literal-property property">compilerOptions</span><span class="token operator">:</span> <span class="token punctuation">{<!-- --></span>
-        <span class="token function-variable function">isCustomElement</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">tag</span><span class="token punctuation">)</span> <span class="token operator">=></span> customElements<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span>tag<span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token function-variable function">isCustomElement</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">tag</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> customElements<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span>tag<span class="token punctuation">)</span><span class="token punctuation">,</span>
       <span class="token punctuation">}</span><span class="token punctuation">,</span>
     <span class="token punctuation">}</span><span class="token punctuation">,</span>
   <span class="token punctuation">}</span><span class="token punctuation">,</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
-
-``` 
+</code></pre> 
 <p>由于<code>markdown-it-mathjax3</code>使用<code>svg</code>渲染，不需要引入额外<code>css</code>文件。</p> 
 <hr> 
 <h3><a id="_256"></a>总结</h3> 

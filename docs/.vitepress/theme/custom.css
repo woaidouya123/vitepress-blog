@@ -1,6 +1,20 @@
+@import url(./prism.css);
+:root {
+    --vp-p-code-white: aliceblue;
+    --vp-p-code-black: dimgrey;
+}
+
 pre {
     white-space: pre-line;
     word-break: break-word;
+    border-radius: 8px;
+    background-color: var(--vp-p-code-white);
+    overflow: auto;
+    padding: 16px 24px;
+}
+
+.dark pre {
+    background-color: var(--vp-p-code-black);
 }
 
 #app {
@@ -28,11 +42,4 @@ pre {
 
 .diff-hard {
     background-color: rgb(239, 71, 67);
-}
-
-pre {
-    border-radius: 8px;
-    background-color: aliceblue;
-    overflow: auto;
-    padding: 16px 24px;
 }

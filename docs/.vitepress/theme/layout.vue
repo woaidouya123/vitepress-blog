@@ -21,7 +21,9 @@ onMounted(() => {
     <Layout>
       <template #layout-bottom>
         <div>
-          <live-cat></live-cat>
+          <ClientOnly>
+            <live-cat></live-cat>
+          </ClientOnly>
           <canvas class="bg" ref="bg"></canvas>
         </div>
       </template>
@@ -29,11 +31,6 @@ onMounted(() => {
   </el-scrollbar>
 </template>
 <style scoped>
-.live2d {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-}
 .bg {
   position: absolute;
   top: 0;

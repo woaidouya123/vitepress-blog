@@ -3,7 +3,8 @@ module.exports = {
   title: 'Do Not Go Gentle Into That Good Night',
   description: 'Rage, rage against the dying of the light.',
   head: [
-    ['link', { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css', crossorigin: '' }]
+    ['link', { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css', crossorigin: '' }],
+    ['link', { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/themes/prism.min.css', crossorigin: '' }]
   ],
   base: '/blog/',
   themeConfig: {

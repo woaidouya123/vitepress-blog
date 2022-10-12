@@ -36,7 +36,8 @@ const processText = (text) => {
   // 代码处理
   text = text.replace(/<code class="language-plain">/g, '<code>')
   text = text.replace(/<pre.*?><code class="language-(.+)">((.|\n)*?)<\/code><\/pre>/g, '\n```$1\n$2\n```')
-  text = text.replace(/<pre.*?><code.*?>((.|\n)*?)<\/code><\/pre>/g, '\n```\n$1\n```')
+  text = text.replace(/<pre.*?><code(?! class="prism).*?>((.|\n)*?)<\/code><\/pre>/g, '\n```\n$1\n```')
+
   // html转义处理
   const codeBlocks = text.match(/```(.|\n)*?```/g)
   codeBlocks &&

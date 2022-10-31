@@ -16,10 +16,10 @@ module.exports = {
       {
         text: '我的站点',
         items: [
-          { text: 'FreshRSS', link: 'https://487lq34228.oicp.vip/' },
-          { text: 'Jupyter', link: 'https://487lq34228.oicp.vip/jupyter' },
-          { text: 'Jenkins', link: 'https://487lq34228.oicp.vip/jenkins/' },
-          { text: 'Pi-Dashboard', link: 'https://487lq34228.oicp.vip/pi-dashboard/' },
+          { text: 'FreshRSS', link: 'https://623542o6e4.goho.co/' },
+          { text: 'Jupyter', link: 'https://623542o6e4.goho.co/jupyter' },
+          { text: 'Jenkins', link: 'https://623542o6e4.goho.co/jenkins/' },
+          { text: 'Pi-Dashboard', link: 'https://623542o6e4.goho.co/pi-dashboard/' },
         ],
       },
     ],

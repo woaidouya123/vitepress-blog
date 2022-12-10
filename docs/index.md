@@ -15,6 +15,9 @@ hero:
 
 <script setup>
 import home from './view/home/index.vue'
+import drillMap from './components/drillMap/index.vue'
 </script>
 
 <home />
+
+<drill-map />

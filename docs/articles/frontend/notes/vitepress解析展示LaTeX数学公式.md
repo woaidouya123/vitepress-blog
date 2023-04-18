@@ -8,7 +8,7 @@
                     <h3><a id="_0"></a>前言</h3> 
 <p>vitepress默认的md解析器<code>markdown-it</code>不支持LaTeX数学公式的解析展示，需要安装扩展插件，此处笔者介绍<code>markdown-it-katex</code>及<code>markdown-it-mathjax3</code>两种插件的配置方法</p> 
 <p><mark>注：笔者当前使用最新vitepress及插件版本如下，随版本更新配置方法可能有改动，仅供参考</mark></p> 
-<table><thead><tr><th align="center">vitepress</th><th align="center">markdown-it-katex</th><th align="center">markdown-it-mathjax3</th></tr></thead><tbody><tr><td align="center">1.0.0-alpha.19</td><td align="center">2.0.3</td><td align="center">4.3.2</td></tr></tbody></table>
+<table><thead><tr><th align="center">vitepress</th><th align="center">markdown-it-katex</th><th align="center">markdown-it-mathjax3</th></tr></thead><tbody><tr><td align="center">1.0.0-alpha.19</td><td align="center">2.0.3</td><td align="center">4.3.2</td></tr></tbody></table> 
 <hr> 
 <h4><a id="markdownitkatex_9"></a>一、markdown-it-katex</h4> 
 <p>一个支持 KaTeX 语法的数学公式渲染器</p> 

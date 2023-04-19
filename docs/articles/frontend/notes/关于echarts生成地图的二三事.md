@@ -8,7 +8,7 @@
 <p>选择需要的区域，右方可下载其JSON API格式的数据。</p> 
 <h3>2.地图的编辑</h3> 
 <p>特定需求下需要对原有地图数据进行修改，如：添加某一非行政区划的地区，特定地区的分割或边缘优化，由于地图数据由横纵坐标组成的点形成，无法直接修改，推荐使用地图修改工具进行修改。&nbsp;<a href="http://geojson.io/" title="地图在线编辑工具">地图在线编辑工具</a></p> 
-<hr>
+<hr> 
 <p>&nbsp;2022-09-19 修改</p> 
 <p>原地址已无效，可使用替代站点<a class="link-info" href="http://datav.aliyun.com/portal/school/atlas/area_generator" title="DataV地图边界生成器">DataV地图边界生成器</a></p> 
 <p><img alt="" height="937" src="https://img-blog.csdnimg.cn/20210716141449633.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dvYWlkb3V5YTEyMw==,size_16,color_FFFFFF,t_70" width="1200"></p> 

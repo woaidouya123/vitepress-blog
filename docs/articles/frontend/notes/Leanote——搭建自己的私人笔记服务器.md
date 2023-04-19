@@ -7,7 +7,7 @@
 <p><img alt="" class="has" height="168" src="https://img-blog.csdn.net/20180807164703970?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dvYWlkb3V5YTEyMw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" width="533"></p> 
 <p>服务器版本分为 源码版 和 二进制编译版</p> 
 <p>因为leanote是由go语言编写，所以安装源码版本的话需要先搭建go语言的编译环境，在经过一番折腾源码版失败之后T-T，我选择了二进制编译版本。</p> 
-<hr>
+<hr> 
 <p>安装步骤如下：</p> 
 <h3>1.先去官网下载<a href="http://leanote.org/#download">leanote服务器最新版</a>，不想折腾的话建议直接二进制版本</h3> 
 <h2>2.安装mongodb数据库</h2> 

@@ -5,7 +5,7 @@
 <h1><a id="_1"></a>项目场景：</h1> 
 <p><span style="color:#999aaa;">如下图表：</span></p> 
 <p style="text-align:center;"><img alt="效果图" src="https://img-blog.csdnimg.cn/20201018231143322.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dvYWlkb3V5YTEyMw==,size_16,color_FFFFFF,t_70"></p> 
-<hr>
+<hr> 
 <h1><a id="_7"></a>问题描述：</h1> 
 <p><span style="color:#999aaa;">后端传来的数据单位为bps,需要前端根据数据动态换算到对应的单位</span></p> 
 <p><span style="color:#999aaa;">换算关系为</span></p> 
@@ -31,10 +31,10 @@ export function calcUnit(value){
 <p>在对yAxis上的刻度formatter配置了换算函数后，出现了下面的效果</p> 
 <p style="text-align:center;"><img alt="" src="https://img-blog.csdnimg.cn/20201018232431316.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dvYWlkb3V5YTEyMw==,size_16,color_FFFFFF,t_70"></p> 
 <p>y轴上刻度并没有像之前的echarts图表那样以10 100 等整数刻度显示，而是出现了小数</p> 
-<hr>
+<hr> 
 <h1><a id="_27"></a>原因分析：</h1> 
 <p><span style="color:#999aaa;">出现这种情况的原因是：echarts用来动态计算刻度的数据并没有因为自定义的显示格式化而改变，echarts是根据十进制来计算的，而由于字节单位的计算是以1024进行单位换算的，就会造成这种现象。</span></p> 
-<hr>
+<hr> 
 <h1><a id="_34"></a>解决方案：</h1> 
 <p>根据返回数据中的最大值，设计算法获取大于并接近其的大整数，使该整数位刻度的最大值</p> 
 <p>如：</p> 

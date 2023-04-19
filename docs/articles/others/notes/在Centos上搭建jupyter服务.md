@@ -2,11 +2,11 @@
 2019-12-02 22:17:55 `jupyter` `python` `linux` `centos`
 
 ---
-<ul><li>初衷</li></ul>
+<ul><li>初衷</li></ul> 
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 方便在服务器上跑一些python爬虫脚本</p> 
-<ul><li>环境准备</li></ul>
+<ul><li>环境准备</li></ul> 
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; Centos × 64 服务器</p> 
-<ul><li>开始</li></ul>
+<ul><li>开始</li></ul> 
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 由于Centos预装的是2.×版本的python,而jupyter需要3.4以上的python版本，所以需要再安装python3.4或以上的版本。（注意不要将之前2.×版本的python删掉，否则会出现系统异常）</p> 
 <p>要安装python3,首先要安装一系列安装包。</p> 
 
@@ -40,7 +40,7 @@ ln -s /usr/local/python3/bin/pip3 /usr/bin/pip3
 ``` 
 <p>至此，python3安装完毕。</p> 
 <p>接下来进行jupyter安装：</p> 
-<ol><li>&nbsp;安装jupyter</li></ol>
+<ol><li>&nbsp;安装jupyter</li></ol> 
 
 ```
 pip3 install  jupyter  

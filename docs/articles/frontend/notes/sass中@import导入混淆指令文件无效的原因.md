@@ -1,5 +1,5 @@
 # [sass中@import导入混淆指令文件无效的原因](https://blog.csdn.net/woaidouya123/article/details/108262501)
-2020-08-27 15:57:36 `css` `sass` `混淆指令` `mixin`
+2023-02-21 20:53:06 `css` `sass` `混淆指令` `mixin`
 
 ---
 <p>Sass 拓展了&nbsp;<code>@import</code>&nbsp;的功能，允许其导入 SCSS 或 Sass 文件。被导入的文件将合并编译到同一个 CSS 文件中，另外，被导入的文件中所包含的变量或者混合指令 (mixin) 都可以在导入的文件中使用。</p> 

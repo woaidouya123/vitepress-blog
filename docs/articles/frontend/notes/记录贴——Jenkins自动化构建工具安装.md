@@ -1,5 +1,5 @@
 # [记录贴——Jenkins自动化构建工具安装](https://blog.csdn.net/woaidouya123/article/details/108988477)
-2020-10-09 23:59:47 `jenkins` `自动化部署` `java`
+2022-12-09 11:31:02 `jenkins` `自动化部署` `java`
 
 ---
 <p>1.环境准备</p> 

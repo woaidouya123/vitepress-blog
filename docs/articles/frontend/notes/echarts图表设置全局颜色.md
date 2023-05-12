@@ -1,5 +1,5 @@
 # [echarts图表设置全局颜色](https://blog.csdn.net/woaidouya123/article/details/103866088)
-2023-04-02 18:48:59 `js` `echarts` `图表` `全局颜色`
+2023-03-20 11:03:04 `js` `echarts` `图表` `全局颜色`
 
 ---
 <p>当项目需要定制echarts图表的颜色时，可以采用以下两种方法：</p> 
